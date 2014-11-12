@@ -24,16 +24,38 @@
     };
 
 
+   function checkSources(article){
+        var anyMatch = false;
+       // console.log(article.sources.length);
+
+        for(var i = 0; i <article.sources.length; i++){
+            //console.log(article.sources[i]);
+            anyMatch = anyMatch || sourceBooleans[article.sources[i]];
+        }
+       return anyMatch;
+   }
+   function showArticle(headline){
+       $('#panelBody').text(getText());
+       $('#panelHeader').text(headline.toUpperCase());
+   }
    function repopulate(){
        for(var i = 0; i <icons.length; i++){
             var article = icons[i];
-            if(iconBooleans[article.topic] && sourceBooleans[article.source] && article.date <= currentDate){
+            if(iconBooleans[article.topic] && checkSources(article) && article.date <= currentDate){
+                var sourceTitles = "";
+                 for(var j = 0; j <article.sources.length; j++){
+                      var headline = "'" + article.sources[j] + "'";
+                      var methodCall = "showArticle(" + headline + ")";
+                      sourceTitles += "<a href='#' onclick=" + methodCall + ">" + article.sources[j].toUpperCase() + "</a><br>";
+                 };
                 // console.log(icons[i].icon);
                 //icons[i].icon.options.iconAnchor = [11110,0];
                  L.marker([article.x,article.y],{icon: article.icon}).addTo(map)
                 .bindPopup(
-                    article.topic.toUpperCase() + "<br>" +
-                    article.source.toUpperCase() + "<br>"
+                   "<h3>"+article.topic.toUpperCase()+"</h3>" +
+                    sourceTitles
+                   // article.topic.toUpperCase() + "<br>" +
+                    //article.source.toUpperCase() + "<br>"
                 );
 
             }
@@ -53,18 +75,19 @@
    var Icon = L.Icon.extend({
         options: {
             iconUrl: 'img/science.png',
-           // shadowUrl: 'leaf-shadow.png',
+            //shadowUrl: 'img/shadow.png',
             iconSize:     [64, 64], // size of the icon
             shadowSize:   [64, 64], // size of the shadow
             iconAnchor:   [32, 0], // point of the icon which will correspond to marker's location
-            shadowAnchor: [32, 0],  // the same for the shadow
+            shadowAnchor: [17, 0],  // the same for the shadow
             popupAnchor:  [0, 8] // point from which the popup should open relative to the iconAnchor
         }
     });
     function Article(){
        this.date = getRandInt(0,3);
        this.topic =  iconsNames[getRandInt(0,5)];
-       this.source =  sources[getRandInt(0,6)];
+       this.sources = shuffle(sources.slice(0)).slice(getRandInt(3,6));
+
        this.geo =  geography[getRandInt(0,6)];
        this.icon = new Icon({iconUrl: 'img/'+ this.topic + '.png'});
 
@@ -132,7 +155,28 @@
         return text;
     }
 
-   repopulate();
+
+  function shuffle(array) {
+    var counter = array.length, temp, index;
+
+    // While there are elements in the array
+    while (counter > 0) {
+        // Pick a random index
+        index = Math.floor(Math.random() * counter);
+
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+
+    return array;
+};
+
+      repopulate();
 
    $('#timeSlider').change(function() {
     //console.log(this.value);
@@ -141,6 +185,8 @@
     repopulate();
    });
 
+   /*
     $('.leaflet-marker-icon').click(function() {
        $('#panelBody').text(getText());// getText();
    });
+       */
