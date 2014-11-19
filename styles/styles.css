@@ -1,4 +1,8 @@
 body{
+        -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    cursor: default;
 font-family: verdana, sans-serif;
 padding: 0px;
 margin : 0px;
@@ -7,6 +11,11 @@ overflow-x: hidden;
     color : lightgrey;
 }
 
+.date{
+    float : right;
+    padding-right: 40px;
+
+}
 #map { width : 100%; height: 1000px; }
 
 #toolbar{
@@ -18,6 +27,29 @@ overflow-x: hidden;
     bottom: 0px;
 }
 
+#topics{
+    height : 130px;
+    transition: .5s all;
+    overflow-y: hidden;
+}
+
+#dates{
+    height : 120px;
+    transition: .5s all;
+    overflow-y: hidden;
+}
+
+#geography{
+    height : 150px;
+    transition: .5s all;
+    overflow-y: hidden;
+}
+
+#sources{
+    height : 140px;
+    transition: .5s all;
+    overflow-y: hidden;
+}
 #timeSliderContainer{
     width: 800px;
 }
@@ -26,49 +58,117 @@ overflow-x: hidden;
     display:block;
     width: 700px;
 }
+
+.mainContainer{
+    position: absolute;
+    left : 0;
+    top : 0;
+    height : 100%;
+}
+#panelContents{
+    height : 100%;
+    opacity: 0;
+   // transition: .5s all;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+#articleButton{
+    width : 50px;
+    position: absolute;
+    z-index: 100;
+}
 #rightPanel{
-    display: block;
-    border-left: 2px solid rgb(50,50,50);
-    width: 450px;
+    padding: 5px;
+    overflow-y: hidden;
+    border-right: 2px solid rgb(50,50,50);;
+    border-bottom: 2px solid rgb(50,50,50);;
+    width: 50px;
     height : 100%;
     background-color: rgb(30,30,30);
-    position: absolute;
-    top: 0px;
-    right:0px;
+   // position: absolute;
+    position: relative;
+    //top: 0px;
+    //left:0px;
+    float : left;
+    display: block;
+    transition: .5s all;
 }
 
 #panelHeader{
-    width : 100%;
-    padding-top: 10px;
-    padding-left: 10px;
-    height : 40px;
+    float : left;
+    width : 90%;
+    padding: 10px;
+    height : auto;
     font-size: 25px;
-     border-bottom: 2px solid rgb(50,50,50);;
+      border-bottom : 1px solid grey;
 }
 
 #panelBody{
-    padding-top: 10px;
-    padding-left: 10px;
-    width : 100%;
-    height : 300px;
+    float : left;
+    padding: 10px;
+    width : 90%;
+    height : 85%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: white;
+    color : black;
     font-size: 15px;
+    text-align: justify;
+}
+
+#panelOptions{
+        float : left;
+
+   // position: absolute;
+    width : 96%;
+   // height : 70px;
+    //bottom: 0px;
+    border-bottom : 1px solid grey;
+    //overflow-x: hidden;
+}
+
+.panelButton{
+    //overflow-x: hidden;
+   // border : 1px solid grey;
+    padding-top: 15px;
+    float : left;
+    text-align: center;
+    width : 50%;
+    height :35px;
+}
+
+.button{
+    transition : .5s all;
+}
+
+.button:hover{
+    background-color: dimgrey;
 }
 
 #filters{
-    border-right: 2px solid rgb(50,50,50);;
-    border-bottom: 2px solid rgb(50,50,50);;
-    width: 250px;
-    height : 560px;
+
+    padding: 5px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+   // border-right: 2px solid rgb(50,50,50);;
+    //border-bottom: 2px solid rgb(50,50,50);;
+  //  width: 250px;
+   // height : 600px;
     background-color: rgb(30,30,30);
-    position: absolute;
-    top: 0px;
-    left:0px;
+  //  position: absolute;
+    position: relative;
+  //  top: 0px;
+   // left: 300px;
+    float : left;
+    z-index: 100;
+    transition: 1s all;
 }
 
 .filterHeader{
     padding-top: 10px;
     padding-left: 10px;
-    border : 1px solid rgb(50,50,50);;
+   // border : 1px solid rgb(50,50,50);;
     font-size: 20px;
     width: 95%;
     height : 30px;
@@ -82,15 +182,6 @@ overflow-x: hidden;
      height : 20px;
 }
 
-#topics{
-    transition : 1s all;
-}
-#geography{
-    transition : 1s all;
-}
-#sources{
-    transition : 1s all;
-}
 .firstTick{
     float : left;
 
@@ -117,27 +208,3 @@ overflow-x: hidden;
     margin-right: 20px;
 }
 
-#panelOptions{
-    position: absolute;
-    width : 100%;
-    height : 70px;
-    bottom: 0px;
-    border : 1px solid grey;
-}
-
-.panelButton{
-    border : 1px solid grey;
-    padding-top: 15px;
-    float : left;
-    text-align: center;
-    width : 32.5%;
-    height : 100%;
-}
-
-.button{
-    transition : .5s all;
-}
-
-.button:hover{
-    background-color: dimgrey;
-}

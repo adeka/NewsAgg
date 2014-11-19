@@ -1,26 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 	<title>News Aggregator</title>
 	<meta charset="utf-8" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="jquery.csv-0.71.min.js"></script>
+    <script src="js/lorem.js"></script>
 	<link rel="stylesheet" href="styles/leaflet.css" />
 <link rel="stylesheet" href="styles/styles.css" />
 </head>
 <body>
 	<div id="map"></div>
+    <div class = "mainContainer">
+
+    <div id="rightPanel">
+        <img id="articleButton" src="img/article.png">
+        <div id="panelContents">
+        <div id="panelOptions">
+            <div id = "hideRightPanel" class="panelButton button">Hide Panel</div>
+            <div class="panelButton button">View Full Article</div>
+        </div>
+        <div id="panelHeader">Title</div>
+        <div id="panelBody">
+        </div>
+        </div>
+	</div>
+
+
    	<div id="filters">
-        <div class="filterHeader button">FILTERS</div>
-        <div class="filterHeader button">TOPICS</div>
+        <div id="filtersButton" class="filterHeader button">FILTERS</div>
+        <div class="filterHeader button" id="topicsButton">TOPICS </div>
+        <div  id="topics">
         <input type="checkbox" checked name="science" value="science" onclick="filterTopics('science')">Science<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterTopics('technology')">Technology<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterTopics('military')">Military<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterTopics('culture')">Culture<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterTopics('ecology')">Ecology<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterTopics('politics')">Politics<br>
-        <div class="filterHeader button">GEOGRAPHY</div>
+        </div>
+        <div class="filterHeader button" id="geoButton">GEOGRAPHY</div>
+        <div  id="geography">
         <input type="checkbox" name="science" value="science">North America<br>
         <input type="checkbox" name="science" value="science">Central America<br>
         <input type="checkbox" name="science" value="science">South America<br>
@@ -28,21 +49,36 @@
         <input type="checkbox" name="science" value="science">Asia<br>
         <input type="checkbox" name="science" value="science">Africa<br>
         <input type="checkbox" name="science" value="science">Oceania<br>
-        <div class="filterHeader button">NEWS SOURCES</div>
-        <input type="checkbox" checked name="science" value="true" onclick="filterSources('bbs')">BBC<br>
+        </div>
+        <div class="filterHeader button" id="sourcesButton">NEWS SOURCES</div>
+        <div  id="sources">
+        <input type="checkbox" checked name="science" value="true" onclick="filterSources('bbc')">BBC<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterSources('cnn')">CNN<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterSources('economist')">Economist<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterSources('new york times')">New York Times<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterSources('al jazeera')">Al Jazeera<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterSources('time')">Time<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterSources('reuters')">Reuters<br>
-   	</div>
-	<div id="toolbar">
+        </div>
+        <div class="filterHeader button" id="datesButton">DATE RANGE</div>
+        <div  id="dates">
+        <input type="checkbox" checked name="science" value="true" onclick="setDate(0)"><div class="date" id = "today"></div><br>
+        <input type="checkbox" name="science" value="science"  onclick="setDate(1)"><div class="date" id = "today1"></div><br>
+        <input type="checkbox" name="science" value="science"   onclick="setDate(2)"><div class="date" id = "today2"></div><br>
+        <input type="checkbox" name="science" value="science"   onclick="setDate(3)"><div class="date" id = "today3"></div><br>
+        <input type="checkbox" name="science" value="science"   onclick="setDate(4)"><div class="date" id = "today4"></div><br>
+        </div>
+        </div>
+
+    </div>
+
+    <!--
+    <div id="toolbar">
         <select name="timeScale" class="timePicker">
-<option value="day">Day</option>
-<option value="month">Month</option>
-<option value="week">Week</option>
-</select>
+            <option value="day">Day</option>
+            <option value="month">Month</option>
+            <option value="week">Week</option>
+        </select>
         <form id="timeSliderContainer">
           <input id="timeSlider" type="range" name="points" min="0" max="3" value="3">
           <div class="firstTick">-3</div>
@@ -50,18 +86,8 @@
           <div class="tick2">-1</div>
           <div class="todayTick">Today</div>
         </form>
-
 	</div>
-	<div id="rightPanel">
-    <div id="panelHeader">Title</div>
-    <div id="panelBody"></div>
-    <div id="panelOptions">
-    <div class="panelButton button">Back To Previous Source</div>
-    <div class="panelButton button">Go To Source</div>
-    <div class="panelButton button">Hide Panel</div>
-
-    </div>
-	</div>
+    -->
 
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="js/map.js"></script>

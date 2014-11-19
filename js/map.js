@@ -1,5 +1,48 @@
 
+/*
 
+var reader = new FileReader();
+reader.onload = function(event) {
+    var contents = event.target.result;
+    console.log("File contents: " + contents);
+};
+
+reader.onerror = function(event) {
+    console.error("File could not be read! Code " + event.target.error.code);
+};
+
+
+var csv =  reader.readAsDataURL("cow.csv");
+;
+
+    var data = $.csv.toObjects(csv);
+    console.log(data[0]);
+*/
+
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+    var today = dd+'/'+mm+'/'+yyyy;
+    var today1 = (dd-1)+'/'+mm+'/'+yyyy;
+    var today2 = (dd-2)+'/'+mm+'/'+yyyy;
+    var today3 = (dd-3)+'/'+mm+'/'+yyyy;
+    var today4 = (dd-4)+'/'+mm+'/'+yyyy;
+
+    $("#today").text(today);
+    $("#today1").text(today1);
+    $("#today2").text(today2);
+    $("#today3").text(today3);
+    $("#today4").text(today4);
+    //console.log(today);
 
    var currentDate = 3;
    var iconsNames = ["science","technology","military","culture","ecology","politics"];
@@ -8,9 +51,20 @@
    var iconBooleans = {"science" : true,"technology" : true,"military" : true,"culture" : true,"ecology" : true,"politics" : true};
    var sourceBooleans = {"bbc" : true,"cnn" : true,"economist" : true,"new york times" : true,"al jazeera" : true,"time" : true,"reuters" : true};
    //var geoBooleans = {"science" : false,"technology" : false,"military" : false,"culture" : false,"ecology" : false,"politics" : false};
-
-   var map = L.map('map').setView([51.505, -0.09], 13);
+   var filtersOpen = false;
+   var rightPanelOpen = false;
+   var topicsOpen = true;
+   var geoOpen = true;
+   var sourcesOpen = true;
+    var datesOpen = true;
+   var map = L.map('map', { zoomControl: false }).setView([51.505, -0.09], 13);
+   new L.Control.Zoom({ position: 'topright' }).addTo(map);
    var icons = [];
+
+    function setDate(date){
+        currentDate = date;
+         repopulate();
+    }
 
    function filterSources(source){
        sourceBooleans[source] = ! sourceBooleans[source];
@@ -22,8 +76,99 @@
          $('.leaflet-marker-icon').remove();
         repopulate();
     };
+    $( "#filtersButton" ).click(function() {
+     // alert( "Handler for .click() called." );
+       //if(filtersOpen){
+
+        //}
+        if(!topicsOpen && !geoOpen && !sourcesOpen){
+             $( "#topics").height("130px");
+             $( "#geography").height("150px");
+             $( "#sources").height("140px");
+             $( "#dates").height("120px");
+            topicsOpen = true;
+            geoOpen = true;
+            sourcesOpen = true;
+            datesOpen = true;
+        }
+        else{
+             $( "#topics").height("0px");
+             $( "#geography").height("0px");
+             $( "#sources").height("0px");
+             $( "#dates").height("0px");
+            topicsOpen = false;
+            geoOpen = false;
+            sourcesOpen = false;
+            datesOpen = false;
+        }
+        //filtersOpen = !filtersOpen;
+    });
+
+    $( "#topicsButton" ).click(function() {
+     // alert( "Handler for .click() called." );
+
+        if(topicsOpen){
+             $( "#topics").height("0px");
+        }
+        else{
+             $( "#topics").height("130px");
+        }
+        topicsOpen = !topicsOpen;
+    });
+
+    $( "#geoButton" ).click(function() {
+     // alert( "Handler for .click() called." );
+        if(geoOpen){
+             $( "#geography").height("0px");
+        }
+        else{
+             $( "#geography").height("150px");
+        }
+        geoOpen = !geoOpen;
+    });
+
+    $( "#sourcesButton" ).click(function() {
+     // alert( "Handler for .click() called." );
+        if(sourcesOpen){
+             $( "#sources").height("0px");
+        }
+        else{
+             $( "#sources").height("140px");
+        }
+        sourcesOpen = !sourcesOpen;
+    });
+    $( "#datesButton" ).click(function() {
+     // alert( "Handler for .click() called." );
+        if(datesOpen){
+             $( "#dates").height("0px");
+        }
+        else{
+             $( "#dates").height("120px");
+        }
+        datesOpen = !datesOpen;
+    });
 
 
+    $( "#hideRightPanel" ).click(function() {
+        closePanel();
+    });
+    $( "#articleButton" ).click(function() {
+        openPanel();
+    });
+
+   function openPanel(){
+        $( "#rightPanel").width("350px");
+       // $( "#panelContents").css({"opacity" : 1});
+       $( "#articleButton" ).fadeTo( 500, 0.0, function() {
+            $( "#panelContents").css({"opacity" : 1});
+         });
+       // $( "#articleButton").fadeTo( "fast" , 0);
+   }
+    function closePanel(){
+         $( "#rightPanel").width("50px");
+         $( "#panelContents").css({"opacity" : 0});
+         $( "#articleButton").fadeTo( "fast" , 1);
+   }
    function checkSources(article){
         var anyMatch = false;
        // console.log(article.sources.length);
@@ -35,7 +180,14 @@
        return anyMatch;
    }
    function showArticle(headline){
-       $('#panelBody').text(getText());
+       openPanel();
+        $('#panelBody').empty();
+        var lorem = new Lorem;
+        lorem.type = Lorem.TEXT;
+        lorem.query = '2p';
+        lorem.createLorem(document.getElementById('panelBody'));
+
+       //$('#panelBody').text(text);
        $('#panelHeader').text(headline.toUpperCase());
    }
    function repopulate(){
@@ -178,13 +330,14 @@
 
       repopulate();
 
+/*
    $('#timeSlider').change(function() {
     //console.log(this.value);
     $('.leaflet-marker-icon').remove();
     currentDate = this.value;
     repopulate();
    });
-
+*/
    /*
     $('.leaflet-marker-icon').click(function() {
        $('#panelBody').text(getText());// getText();
