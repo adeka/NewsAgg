@@ -44,6 +44,23 @@ var csv =  reader.readAsDataURL("cow.csv");
     $("#today4").text(today4);
     //console.log(today);
 
+
+      var feedResults= {"science" : null,
+       "technology" :  null,
+       "politics" : null,
+       "ecology" : null,
+       "culture" :  null,
+       "military" : null
+      }
+
+      var feedLookup= {"http://feeds.reuters.com/reuters/scienceNews" : "science",
+       "http://feeds.reuters.com/reuters/technologyNews":"technology" ,
+        "http://feeds.reuters.com/Reuters/PoliticsNews":"politics",
+      "http://feeds.reuters.com/reuters/environment": "ecology",
+       "http://feeds.reuters.com/news/artsculture":"culture" ,
+       "http://feeds.reuters.com/Reuters/worldNews":"military"
+      }
+
    var currentDate = 3;
    var iconsNames = ["science","technology","military","culture","ecology","politics"];
    var sources = ["bbc","cnn","economist","new york times","al jazeera","time", "reuters"];
@@ -60,7 +77,7 @@ var csv =  reader.readAsDataURL("cow.csv");
    var map = L.map('map', { zoomControl: false }).setView([51.505, -0.09], 13);
    new L.Control.Zoom({ position: 'topright' }).addTo(map);
    var icons = [];
-    var results;
+    var results = [];
 
     L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -84,10 +101,10 @@ var csv =  reader.readAsDataURL("cow.csv");
             popupAnchor:  [0, -64] // point from which the popup should open relative to the iconAnchor
         }
     });
-    function Article(entry){
+    function Article(entry, topic){
         this.link = entry.link;
        this.date = getRandInt(0,3);
-       this.topic =  iconsNames[getRandInt(0,5)];
+       this.topic = topic;// iconsNames[getRandInt(0,5)];
         this.title = entry.title;
         this.pubDate =  entry.publishedDate;
         this.content = entry.content;
@@ -101,7 +118,7 @@ var csv =  reader.readAsDataURL("cow.csv");
 
        this.geo =  geography[getRandInt(0,6)];
       // this.icon = new Icon({iconUrl: 'img/'+ this.topic + '.png'});
-       this.icon = new Icon({iconUrl: 'img/military.png'});
+       this.icon = new Icon({iconUrl: 'img/' + topic + '.png'});
         this.icon.topic =  this.topic;
 
         console.log(cityName);
@@ -110,8 +127,8 @@ var csv =  reader.readAsDataURL("cow.csv");
         //this.x = coords.lat();
         //this.y = coords.lng();
        //console.log(this.icon.options.source);
-       //this.x = getRand(51.45, 51.57);
-       //this.y = getRand(-.3, 0);
+       //this.x = getRand(-.1, .1);
+       //this.y = getRand(-.3, .3);
       //  console.log("making article");
 
     };
@@ -131,16 +148,28 @@ var csv =  reader.readAsDataURL("cow.csv");
       var nprTopNews = "http://www.npr.org/rss/rss.php?id=1004";
       var cnnTopNews = "http://rss.cnn.com/rss/cnn_topstories.rss";
 
-      var feed = new google.feeds.Feed(reutersTopNews);
+      var feeds= {"science" : "http://feeds.reuters.com/reuters/scienceNews",
+       "technology" : "http://feeds.reuters.com/reuters/technologyNews",
+       "politics" : "http://feeds.reuters.com/Reuters/PoliticsNews",
+       "ecology" : "http://feeds.reuters.com/reuters/environment",
+       "culture" : "http://feeds.reuters.com/news/artsculture",
+       "military" : "http://feeds.reuters.com/Reuters/worldNews"
+      }
 
-      feed.setNumEntries(10);
-      feed.includeHistoricalEntries();
+        var topic;
+        for(var i=0; i < iconsNames.length; i++){
+          var feed = new google.feeds.Feed(feeds[iconsNames[i]]);
 
-      feed.load(function(res) {
-        if (!res.error) {
-            results = res;
+          feed.setNumEntries(10);
+         // feed.includeHistoricalEntries();
+          feed.load(function(res){
+            if (!res.error) {
+                results.push(res);
+            }
+          });
+           // feedResults[iconsNames[i]] = results;
         }
-      });
+
 
         //var query = 'site:cnn.com president';
         //google.feeds.findFeeds(query, findDone);
@@ -164,14 +193,20 @@ var csv =  reader.readAsDataURL("cow.csv");
                  };
                 // console.log(icons[i].icon);
                 //icons[i].icon.options.iconAnchor = [11110,0];
-                 L.marker([article.x,article.y],{icon: article.icon}).addTo(map)
-                .bindPopup(
+                if(article.x && article.y){
+                   L.marker([article.x,article.y],{icon: article.icon}).addTo(map)
+                    .bindPopup(
                   "<h3>"+article.title+"</h3>" +
                   "<h4>"+article.pubDate +"</h4>"+
                     sourceTitles
                    // article.topic.toUpperCase() + "<br>" +
                     //article.source.toUpperCase() + "<br>"
                 );
+                }
+                else{
+                    console.log("missing coordinates");
+                }
+
 
             }
         }
@@ -196,31 +231,63 @@ var csv =  reader.readAsDataURL("cow.csv");
 
    }
 
-function ParseFeed(){
-      for (var i = 0; i < results.feed.entries.length; i++) {
-          var entry = results.feed.entries[i];
-           icons.push(new Article(entry));
+function ParseFeed(result, topic, i){
+      //console.log(results.feed.entries.length + " articles");
 
-          //CreateArticle(entry, i);
+      for (var i = 0; i < 6; i++) {
+          var entry = result.feed.entries[i];
+           icons.push(new Article(entry, topic));
       }
-}
-
-function CreateArticle(entry, i){
     setTimeout(function(){
-        icons.push(new Article(entry));
-
-        //console.log("push");
-
-    }, i*500);
-  // icons.push(new Article(entry));
+   repopulate();
+}, 1000);
+    /*
+     setTimeout(function(){
+        createArticles();
+    }, 8000);
+*/
 }
+
 setTimeout(function(){
-    ParseFeed();
+    //
+    //console.log(results);
+    for(var i=0; i < iconsNames.length; i++){
+        for(var j=0; j < results.length; j++){
+            if(feedLookup[results[j].feed.feedUrl] == iconsNames[i])
+        feedResults[iconsNames[i]] = results[j];
+        }
+    }
+    /*
+    for(var i = 0; i < iconsNames.length; i++){
+        var topic = iconsNames[i];
+        ParseFeed(feedResults[topic], topic);
+    }
+    */
+
+    ParseFeed(feedResults["science"], "science");
+    setTimeout(function(){
+        ParseFeed(feedResults["culture"], "culture");
+    }, 3500);
+
+    setTimeout(function(){
+        ParseFeed(feedResults["military"], "military");
+    }, 7000);
+
+    setTimeout(function(){
+        ParseFeed(feedResults["technology"], "technology");
+    }, 10500);
+    setTimeout(function(){
+        ParseFeed(feedResults["politics"], "politics");
+    }, 14000);
+    setTimeout(function(){
+        ParseFeed(feedResults["ecology"], "ecology");
+    }, 17500);
+
+    //console.log(feedResults);
 }, 1000);
 
-setTimeout(function(){
-   repopulate();
-}, 2000);
+
+
 
 
     function setDate(date){
@@ -443,9 +510,9 @@ function init() {
 function codeCityName(name, article) {
     geocoder.geocode( { 'address': name}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-        article.x = results[0].geometry.location.lat();
-        article.y = results[0].geometry.location.lng();
-        console.log("geocoded");
+        article.x = results[0].geometry.location.lat() + getRand(-.1, .1);
+        article.y = results[0].geometry.location.lng() + getRand(-.3, .3);
+        //console.log("geocoded");
         //article.coords = results[0].geometry.location;
     } else {
       console.log('Geocode was not successful for the following reason: ' + status);
