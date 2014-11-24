@@ -5,8 +5,9 @@
 	<meta charset="utf-8" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="jquery.csv-0.71.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script src="js/lorem.js"></script>
 	<link rel="stylesheet" href="styles/leaflet.css" />
 <link rel="stylesheet" href="styles/styles.css" />
@@ -14,17 +15,19 @@
 <body>
 	<div id="map"></div>
     <div class = "mainContainer">
-
-    <div id="rightPanel">
+   <!-- <div id="feed"></div>-->
+    <div id="toolbar">
         <img id="articleButton" src="img/article.png">
+        <img id="photosButton" src="img/photos.png">
+    </div>
+    <div id="rightPanel">
         <div id="panelContents">
         <div id="panelOptions">
             <div id = "hideRightPanel" class="panelButton button">Hide Panel</div>
             <div class="panelButton button">View Full Article</div>
         </div>
         <div id="panelHeader">Title</div>
-        <div id="panelBody">
-        </div>
+        <iframe id="panelBody" allowfullscreen="" frameborder="0" src=""  vspace="0" hspace="0" scrolling="yes"></iframe>
         </div>
 	</div>
 

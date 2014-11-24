@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc52ceec-0dc7-420b-92bc-25d7b050a5cb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/Events.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gmaps.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/Thumbs.db" afterPath="$PROJECT_DIR$/img/Thumbs.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/article.png" afterPath="$PROJECT_DIR$/img/article.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/icons.psd" afterPath="$PROJECT_DIR$/icons.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/photos.png" afterPath="$PROJECT_DIR$/img/photos.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/leaflet.css" afterPath="$PROJECT_DIR$/styles/leaflet.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/map.js" afterPath="$PROJECT_DIR$/js/map.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/styles.css" afterPath="$PROJECT_DIR$/styles/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NewsAgg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,19 +34,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="14" selection-start="888" selection-end="888" vertical-scroll-proportion="0.5212264" vertical-offset="0" max-vertical-offset="1717">
+            <state line="96" column="7" selection-start="5196" selection-end="5196" vertical-scroll-proportion="-30.192308" vertical-offset="847" max-vertical-offset="1768">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="leaflet.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/leaflet.css">
+      <file leaf-file-name="gmaps.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gmaps.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="287" column="5" selection-start="5539" selection-end="5539" vertical-scroll-proportion="-10.4" vertical-offset="4619" max-vertical-offset="8279">
+            <state line="25" column="0" selection-start="610" selection-end="1059" vertical-scroll-proportion="-11.076923" vertical-offset="137" max-vertical-offset="969">
               <folding />
             </state>
           </provider>
@@ -50,16 +55,16 @@
       <file leaf-file-name="styles.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="18" selection-start="1702" selection-end="1702" vertical-scroll-proportion="-14.96" vertical-offset="1326" max-vertical-offset="3672">
+            <state line="18" column="33" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="3910">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="map.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="41" selection-start="3007" selection-end="3007" vertical-scroll-proportion="0.0" vertical-offset="1084" max-vertical-offset="5950">
+            <state line="217" column="16" selection-start="7398" selection-end="7398" vertical-scroll-proportion="0.7940828" vertical-offset="3018" max-vertical-offset="8075">
               <folding />
             </state>
           </provider>
@@ -84,17 +89,17 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/styles/leaflet.css" />
-        <option value="$PROJECT_DIR$/js/map.js" />
+        <option value="$PROJECT_DIR$/js/Events.js" />
         <option value="$PROJECT_DIR$/styles/styles.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/gmaps.html" />
+        <option value="$PROJECT_DIR$/js/map.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="960" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -110,7 +115,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -121,11 +126,63 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewsAgg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewsAgg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewsAgg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewsAgg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewsAgg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewsAgg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewsAgg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../is4300f14" />
     <property name="FullScreen" value="false" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -212,9 +269,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -236,6 +290,9 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -290,7 +347,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="0" width="960" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -298,7 +355,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15924276" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -326,20 +383,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="79" selection-start="1369" selection-end="1369" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/leaflet.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="25" selection-start="1790" selection-end="1790" vertical-scroll-proportion="0.0" vertical-offset="1004" max-vertical-offset="8245">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="54" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="3349">
@@ -391,42 +434,57 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="14" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.3927739" vertical-offset="1805" max-vertical-offset="36924">
-          <folding />
-        </state>
+        <state line="126" column="14" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.3927739" vertical-offset="1805" max-vertical-offset="36924" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/lorem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-10.891986" vertical-offset="9378" max-vertical-offset="22066">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-10.891986" vertical-offset="9378" max-vertical-offset="22066" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/styles/leaflet.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="287" column="5" selection-start="5539" selection-end="5539" vertical-scroll-proportion="-10.4" vertical-offset="4619" max-vertical-offset="8279">
+        <state line="289" column="48" selection-start="5634" selection-end="5634" vertical-scroll-proportion="0.33561644" vertical-offset="4619" max-vertical-offset="8279">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/map.js">
+    <entry file="file://$PROJECT_DIR$/js/Events.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="41" selection-start="3007" selection-end="3007" vertical-scroll-proportion="0.0" vertical-offset="1084" max-vertical-offset="5950">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="45" selection-end="45" vertical-scroll-proportion="0.019406393" vertical-offset="0" max-vertical-offset="876" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/styles/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="18" selection-start="1702" selection-end="1702" vertical-scroll-proportion="-14.96" vertical-offset="1326" max-vertical-offset="3672">
+        <state line="18" column="33" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="3910">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gmaps.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="610" selection-end="1059" vertical-scroll-proportion="-11.076923" vertical-offset="137" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="16" selection-start="1945" selection-end="1945" vertical-scroll-proportion="0.33333334" vertical-offset="1839" max-vertical-offset="15623">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="14" selection-start="888" selection-end="888" vertical-scroll-proportion="0.5212264" vertical-offset="0" max-vertical-offset="1717">
+        <state line="96" column="7" selection-start="5196" selection-end="5196" vertical-scroll-proportion="-30.192308" vertical-offset="847" max-vertical-offset="1768">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="217" column="16" selection-start="7398" selection-end="7398" vertical-scroll-proportion="0.7940828" vertical-offset="3018" max-vertical-offset="8075">
           <folding />
         </state>
       </provider>

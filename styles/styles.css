@@ -1,13 +1,13 @@
 body{
-        -webkit-user-select: none; /* Chrome/Safari */
+    -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
     cursor: default;
-font-family: verdana, sans-serif;
-padding: 0px;
-margin : 0px;
-overflow-y: hidden;
-overflow-x: hidden;
+    font-family: verdana, sans-serif;
+    padding: 0px;
+    margin : 0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
     color : lightgrey;
 }
 
@@ -19,12 +19,12 @@ overflow-x: hidden;
 #map { width : 100%; height: 1000px; }
 
 #toolbar{
-    border-top: 2px solid rgb(50,50,50);
-    width: 100%;
-    height : 60px;
+    border-right: 2px solid rgb(50,50,50);
+    width: 60px;
+    height : 100%;
     background-color: rgb(30,30,30);
-    position: absolute;
-    bottom: 0px;
+    position: relative;
+    float : left;
 }
 
 #topics{
@@ -59,6 +59,16 @@ overflow-x: hidden;
     width: 700px;
 }
 
+#feed{
+    border-right: 2px solid rgb(50,50,50);
+    width: 250px;
+    height : 100%;
+    background-color: rgb(30,30,30);
+    position: relative;
+    float : left;
+
+}
+
 .mainContainer{
     position: absolute;
     left : 0;
@@ -78,12 +88,18 @@ overflow-x: hidden;
     position: absolute;
     z-index: 100;
 }
+#photosButton{
+    width : 50px;
+    position: absolute;
+    top : 60px;
+    z-index: 100;
+}
 #rightPanel{
-    padding: 5px;
+    padding: 0px;
     overflow-y: hidden;
-    border-right: 2px solid rgb(50,50,50);;
-    border-bottom: 2px solid rgb(50,50,50);;
-    width: 50px;
+    //border-right: 2px solid rgb(50,50,50);;
+    //border-bottom: 2px solid rgb(50,50,50);;
+    width: 0px;
     height : 100%;
     background-color: rgb(30,30,30);
    // position: absolute;
@@ -106,15 +122,13 @@ overflow-x: hidden;
 
 #panelBody{
     float : left;
-    padding: 10px;
-    width : 90%;
-    height : 85%;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    padding: 2px;
+    width : 680px;
+    height : 100%;
+
+
     background-color: white;
-    color : black;
-    font-size: 15px;
-    text-align: justify;
+
 }
 
 #panelOptions{

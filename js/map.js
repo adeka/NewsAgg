@@ -60,6 +60,168 @@ var csv =  reader.readAsDataURL("cow.csv");
    var map = L.map('map', { zoomControl: false }).setView([51.505, -0.09], 13);
    new L.Control.Zoom({ position: 'topright' }).addTo(map);
    var icons = [];
+    var results;
+
+    L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        id: 'examples.map-i875mjb7'
+    }).addTo(map);
+
+    map.setZoom(3);
+    map.panBy([-100, 200]);
+
+   var Icon = L.Icon.extend({
+        options: {
+            iconUrl: 'img/science.png',
+            //shadowUrl: 'img/shadow.png',
+            iconSize:     [64, 64], // size of the icon
+            shadowSize:   [64, 64], // size of the shadow
+            iconAnchor:   [32, 64], // point of the icon which will correspond to marker's location
+            shadowAnchor: [17, 0],  // the same for the shadow
+            popupAnchor:  [0, -64] // point from which the popup should open relative to the iconAnchor
+        }
+    });
+    function Article(entry){
+        this.link = entry.link;
+       this.date = getRandInt(0,3);
+       this.topic =  iconsNames[getRandInt(0,5)];
+        this.title = entry.title;
+        this.pubDate =  entry.publishedDate;
+        this.content = entry.content;
+        this.categories = entry.categories;
+        //this.media = entry.mediaGroup.content;
+
+        var cityName = entry.contentSnippet.split(" (")[0];
+
+       // console.log();
+       this.sources = shuffle(sources.slice(0)).slice(getRandInt(3,6));
+
+       this.geo =  geography[getRandInt(0,6)];
+      // this.icon = new Icon({iconUrl: 'img/'+ this.topic + '.png'});
+       this.icon = new Icon({iconUrl: 'img/military.png'});
+        this.icon.topic =  this.topic;
+
+        console.log(cityName);
+        codeCityName(cityName, this);
+        console.log("done");
+        //this.x = coords.lat();
+        //this.y = coords.lng();
+       //console.log(this.icon.options.source);
+       //this.x = getRand(51.45, 51.57);
+       //this.y = getRand(-.3, 0);
+      //  console.log("making article");
+
+    };
+
+    google.load("feeds", "1");
+
+
+    function initialize() {
+
+      var googleTopNews = "https://news.google.com/?output=rss";
+      var reutersTopNews = "http://feeds.reuters.com/reuters/topNews";
+      var foxTopNews = "http://feeds.foxnews.com/foxnews/latest";
+      var nyTopNews = "http://rss.nytimes.com/services/xml/rss/nyt/InternationalHome.xml";
+      var scienceDailyTopNews = "http://www.sciencedaily.com/newsfeed.xml";
+      var abcTopNews = "http://feeds.abcnews.com/abcnews/topstories";
+      var bbcTopNews = "http://feeds.bbci.co.uk/news/rss.xml?edition=int";
+      var nprTopNews = "http://www.npr.org/rss/rss.php?id=1004";
+      var cnnTopNews = "http://rss.cnn.com/rss/cnn_topstories.rss";
+
+      var feed = new google.feeds.Feed(reutersTopNews);
+
+      feed.setNumEntries(10);
+      feed.includeHistoricalEntries();
+
+      feed.load(function(res) {
+        if (!res.error) {
+            results = res;
+        }
+      });
+
+        //var query = 'site:cnn.com president';
+        //google.feeds.findFeeds(query, findDone);
+    }
+
+    google.setOnLoadCallback(initialize);
+
+
+   function repopulate(){
+       for(var i = 0; i <icons.length; i++){
+            var article = icons[i];
+            if(iconBooleans[article.topic] && checkSources(article) && article.date <= currentDate){
+                var sourceTitles = "";
+               // var link = '<a href="'+article.link+'"> Link </a><br>';
+
+                 for(var j = 0; j <article.categories.length; j++){
+                      var headline = article.title;
+                     //console.log(headline.);
+                      //var arg = "'" + article.title.toString() + "'";//article.title.toString();
+                      sourceTitles += '<a href="#" onclick="showArticle(\''+article.title + '\')"> View </a><br>';
+                 };
+                // console.log(icons[i].icon);
+                //icons[i].icon.options.iconAnchor = [11110,0];
+                 L.marker([article.x,article.y],{icon: article.icon}).addTo(map)
+                .bindPopup(
+                  "<h3>"+article.title+"</h3>" +
+                  "<h4>"+article.pubDate +"</h4>"+
+                    sourceTitles
+                   // article.topic.toUpperCase() + "<br>" +
+                    //article.source.toUpperCase() + "<br>"
+                );
+
+            }
+        }
+   }
+   function showArticle(title){
+
+       var article;
+       for(var i =0; i < icons.length; i++){
+           if(icons[i].title == title){
+                article = icons[i];
+               break;
+           }
+       }
+       if(article){
+       openPanel();
+       $('#panelBody').empty();
+       $('#panelHeader').empty();
+       $('#panelBody').attr('src', article.link);
+           //console.log(article.content);
+       $('#panelHeader').text(article.title);
+       }
+
+   }
+
+function ParseFeed(){
+      for (var i = 0; i < results.feed.entries.length; i++) {
+          var entry = results.feed.entries[i];
+           icons.push(new Article(entry));
+
+          //CreateArticle(entry, i);
+      }
+}
+
+function CreateArticle(entry, i){
+    setTimeout(function(){
+        icons.push(new Article(entry));
+
+        //console.log("push");
+
+    }, i*500);
+  // icons.push(new Article(entry));
+}
+setTimeout(function(){
+    ParseFeed();
+}, 1000);
+
+setTimeout(function(){
+   repopulate();
+}, 2000);
+
 
     function setDate(date){
         currentDate = date;
@@ -157,15 +319,20 @@ var csv =  reader.readAsDataURL("cow.csv");
     });
 
    function openPanel(){
-        $( "#rightPanel").width("350px");
+        $( "#rightPanel").width("720px");
+        //$( "#rightPanel").padding("5px");
+       // $( "#rightPanel").css({"padding" : 5});
        // $( "#panelContents").css({"opacity" : 1});
        $( "#articleButton" ).fadeTo( 500, 0.0, function() {
             $( "#panelContents").css({"opacity" : 1});
+
          });
        // $( "#articleButton").fadeTo( "fast" , 0);
    }
     function closePanel(){
-         $( "#rightPanel").width("50px");
+         $( "#rightPanel").width("0px");
+        // $( "#rightPanel").css({"padding" : 0});
+        // $( "#rightPanel").padding("0px");
          $( "#panelContents").css({"opacity" : 0});
          $( "#articleButton").fadeTo( "fast" , 1);
    }
@@ -179,81 +346,20 @@ var csv =  reader.readAsDataURL("cow.csv");
         }
        return anyMatch;
    }
-   function showArticle(headline){
-       openPanel();
-        $('#panelBody').empty();
-        var lorem = new Lorem;
-        lorem.type = Lorem.TEXT;
-        lorem.query = '2p';
-        lorem.createLorem(document.getElementById('panelBody'));
 
-       //$('#panelBody').text(text);
-       $('#panelHeader').text(headline.toUpperCase());
-   }
-   function repopulate(){
-       for(var i = 0; i <icons.length; i++){
-            var article = icons[i];
-            if(iconBooleans[article.topic] && checkSources(article) && article.date <= currentDate){
-                var sourceTitles = "";
-                 for(var j = 0; j <article.sources.length; j++){
-                      var headline = "'" + article.sources[j] + "'";
-                      var methodCall = "showArticle(" + headline + ")";
-                      sourceTitles += "<a href='#' onclick=" + methodCall + ">" + article.sources[j].toUpperCase() + "</a><br>";
-                 };
-                // console.log(icons[i].icon);
-                //icons[i].icon.options.iconAnchor = [11110,0];
-                 L.marker([article.x,article.y],{icon: article.icon}).addTo(map)
-                .bindPopup(
-                   "<h3>"+article.topic.toUpperCase()+"</h3>" +
-                    sourceTitles
-                   // article.topic.toUpperCase() + "<br>" +
-                    //article.source.toUpperCase() + "<br>"
-                );
 
-            }
-        }
-   }
-    L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        id: 'examples.map-i875mjb7'
-    }).addTo(map);
+
 
 //[51.57 -> 51.45, 0 -> -.3]
 
 
-   var Icon = L.Icon.extend({
-        options: {
-            iconUrl: 'img/science.png',
-            //shadowUrl: 'img/shadow.png',
-            iconSize:     [64, 64], // size of the icon
-            shadowSize:   [64, 64], // size of the shadow
-            iconAnchor:   [32, 0], // point of the icon which will correspond to marker's location
-            shadowAnchor: [17, 0],  // the same for the shadow
-            popupAnchor:  [0, 8] // point from which the popup should open relative to the iconAnchor
-        }
-    });
-    function Article(){
-       this.date = getRandInt(0,3);
-       this.topic =  iconsNames[getRandInt(0,5)];
-       this.sources = shuffle(sources.slice(0)).slice(getRandInt(3,6));
 
-       this.geo =  geography[getRandInt(0,6)];
-       this.icon = new Icon({iconUrl: 'img/'+ this.topic + '.png'});
 
-       this.icon.topic =  this.topic;
-       //console.log(this.icon.options.source);
-       this.x = getRand(51.45, 51.57);
-       this.y = getRand(-.3, 0);
-
-    };
-
+/*
     for(var i = 0; i < 100; i++){
         icons[i] = new Article();
     }
-
+*/
         //.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 
 
@@ -328,7 +434,26 @@ var csv =  reader.readAsDataURL("cow.csv");
     return array;
 };
 
-      repopulate();
+
+var geocoder;
+function init() {
+  geocoder = new google.maps.Geocoder();
+}
+
+function codeCityName(name, article) {
+    geocoder.geocode( { 'address': name}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+        article.x = results[0].geometry.location.lat();
+        article.y = results[0].geometry.location.lng();
+        console.log("geocoded");
+        //article.coords = results[0].geometry.location;
+    } else {
+      console.log('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', init);
 
 /*
    $('#timeSlider').change(function() {
