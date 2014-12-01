@@ -3,19 +3,18 @@
 <head>
 	<title>News Aggregator</title>
 	<meta charset="utf-8" />
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script src="js/lorem.js"></script>
+    <script src="js/firebase.js"></script>
 	<link rel="stylesheet" href="styles/leaflet.css" />
 <link rel="stylesheet" href="styles/styles.css" />
 </head>
 <body>
 	<div id="map"></div>
     <div class = "mainContainer">
-   <!-- <div id="feed"></div>-->
     <div id="toolbar">
         <img id="articleButton" src="img/article.png">
         <img id="photosButton" src="img/photos.png">
@@ -30,8 +29,6 @@
         <iframe id="panelBody" allowfullscreen="" frameborder="0" src=""  vspace="0" hspace="0" scrolling="yes"></iframe>
         </div>
 	</div>
-
-
    	<div id="filters">
         <div id="filtersButton" class="filterHeader button">FILTERS</div>
         <div class="filterHeader button" id="topicsButton">TOPICS </div>
@@ -55,12 +52,12 @@
         </div>
         <div class="filterHeader button" id="sourcesButton">NEWS SOURCES</div>
         <div  id="sources">
-        <input type="checkbox" checked name="science" value="true" onclick="filterSources('bbc')">BBC<br>
-        <input type="checkbox" checked name="science" value="science" onclick="filterSources('cnn')">CNN<br>
-        <input type="checkbox" checked name="science" value="science" onclick="filterSources('economist')">Economist<br>
-        <input type="checkbox" checked name="science" value="science" onclick="filterSources('new york times')">New York Times<br>
-        <input type="checkbox" checked name="science" value="science" onclick="filterSources('al jazeera')">Al Jazeera<br>
-        <input type="checkbox" checked name="science" value="science" onclick="filterSources('time')">Time<br>
+        <input type="checkbox" name="science" value="true" onclick="filterSources('bbc')">BBC<br>
+        <input type="checkbox" name="science" value="science" onclick="filterSources('cnn')">CNN<br>
+        <input type="checkbox" name="science" value="science" onclick="filterSources('economist')">Economist<br>
+        <input type="checkbox" name="science" value="science" onclick="filterSources('new york times')">New York Times<br>
+        <input type="checkbox" name="science" value="science" onclick="filterSources('al jazeera')">Al Jazeera<br>
+        <input type="checkbox" name="science" value="science" onclick="filterSources('time')">Time<br>
         <input type="checkbox" checked name="science" value="science" onclick="filterSources('reuters')">Reuters<br>
         </div>
         <div class="filterHeader button" id="datesButton">DATE RANGE</div>
@@ -72,27 +69,9 @@
         <input type="checkbox" name="science" value="science"   onclick="setDate(4)"><div class="date" id = "today4"></div><br>
         </div>
         </div>
-
     </div>
-
-    <!--
-    <div id="toolbar">
-        <select name="timeScale" class="timePicker">
-            <option value="day">Day</option>
-            <option value="month">Month</option>
-            <option value="week">Week</option>
-        </select>
-        <form id="timeSliderContainer">
-          <input id="timeSlider" type="range" name="points" min="0" max="3" value="3">
-          <div class="firstTick">-3</div>
-          <div class="tick1">-2</div>
-          <div class="tick2">-1</div>
-          <div class="todayTick">Today</div>
-        </form>
-	</div>
-    -->
-
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/Events.js"></script>
 </body>
 </html>
